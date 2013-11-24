@@ -1,9 +1,9 @@
 /**
- *   
+ *
  *   This program is free software: you can redistribute it and/or modify  it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *   
+ *
  *   This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
- *   
+ *
  *   You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.
 **/
 
@@ -34,7 +34,10 @@ return function underscoreDeepExtend (obj) {
           if (!_.isArray(obj[prop]) || !_.isArray(source[prop])){
             throw 'Error: Trying to combine an array with a non-array (' + prop + ')';
           } else {
-            obj[prop] = _.reject(_.deepExtend(obj[prop], source[prop]), function (item) { return _.isNull(item);});
+            // obj[prop] = _.reject(_.deepExtend(obj[prop], source[prop]), function (item) { return _.isNull(item);});
+
+            // don't deep extend arrays; @mrhanlon
+            obj[prop] = source[prop];
           }
         }
         else if (_.isObject(obj[prop]) || _.isObject(source[prop])){
